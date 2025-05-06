@@ -44,7 +44,7 @@ def contact():
 @app.route('/commits/')
 def commits():
     # Récupérer les données de l'API GitHub
-    response = urlopen('https://api.github.com/repos/OpenRSI/5MCSI_Metriques/commits')
+    response = urlopen('https://api.github.com/repos/gharbiines25/5MCSI_Metriques/commits')
     raw_content = response.read()
     json_content = json.loads(raw_content.decode('utf-8'))
 
