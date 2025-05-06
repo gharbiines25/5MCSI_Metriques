@@ -4,6 +4,8 @@ from flask import json
 from datetime import datetime
 from urllib.request import urlopen
 import sqlite3
+from collections import Counter
+
                                                                                                                                        
 app = Flask(__name__)                                                                                                                  
                                                                                                                                        
@@ -37,6 +39,35 @@ def histogramme():
 @app.route("/contact/")
 def contact():
     return render_template("contact.html")
+
+
+@app.route('/commits/')
+def commits():
+    # Récupérer les données de l'API GitHub
+    response = urlopen('https://api.github.com/repos/OpenRSI/5MCSI_Metriques/commits')
+    raw_content = response.read()
+    json_content = json.loads(raw_content.decode('utf-8'))
+
+    # Extraire les minutes des dates de commit
+    minutes_list = []
+    for commit in json_content:
+        commit_date_str = commit.get('commit', {}).get('author', {}).get('date')
+        if commit_date_str:
+            date_object = datetime.strptime(commit_date_str, '%Y-%m-%dT%H:%M:%SZ')
+            minutes_list.append(date_object.minute)
+
+    # Compter le nombre de commits par minute
+    minute_counter = Counter(minutes_list)
+
+    # Préparer les données pour le graphique
+    results = []
+    for minute in range(0, 60):
+        results.append({
+            'minute': f"{minute} min",
+            'nb_commits': minute_counter.get(minute, 0)
+        })
+
+    return render_template("commits.html", results=results)
   
 if __name__ == "__main__":
   app.run(debug=True)
