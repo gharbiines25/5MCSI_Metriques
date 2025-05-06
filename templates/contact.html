@@ -1,0 +1,62 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Contactez-moi</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f8;
+        margin: 40px;
+      }
+      h2 {
+        color: #333366;
+      }
+      form {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 8px;
+        width: 400px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      label {
+        display: block;
+        margin-top: 10px;
+        color: #333;
+      }
+      input, textarea {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      button {
+        margin-top: 15px;
+        background-color: #333366;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #555599;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Contactez-moi</h2>
+    <form>
+      <label for="nom">Nom :</label>
+      <input type="text" id="nom" name="nom" placeholder="Votre nom">
+
+      <label for="prenom">Prénom :</label>
+      <input type="text" id="prenom" name="prenom" placeholder="Votre prénom">
+
+      <label for="message">Votre message :</label>
+      <textarea id="message" name="message" placeholder="Votre message" rows="4"></textarea>
+
+      <button type="submit">Envoyer</button>
+    </form>
+  </body>
+</html>
